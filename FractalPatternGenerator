@@ -1,0 +1,43 @@
+"```python
+# Fractal Pattern Generator
+
+import turtle
+import random
+
+def random_color():
+    return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
+
+def draw_fractal_recursive(t, depth, length):
+    if depth == 0:
+        t.color(random_color())
+        t.forward(length)
+    else:
+        draw_fractal_recursive(t, depth - 1, length * 0.5)
+        t.left(60)
+        draw_fractal_recursive(t, depth - 1, length * 0.5)
+        t.right(120)
+        draw_fractal_recursive(t, depth - 1, length * 0.5)
+        t.left(60)
+        draw_fractal_recursive(t, depth - 1, length * 0.5)
+
+def draw_fractal(iterations, length=200):
+    t = turtle.Turtle()
+    t.speed(0)
+    t.penup()
+    t.goto(-length / 2, -length / 3)
+    t.pendown()
+    turtle.colormode(255)
+    for _ in range(3):
+        draw_fractal_recursive(t, iterations, length)
+        t.right(120)
+  
+def main():
+    iterations = int(input(""Enter the depth of the fractal pattern: ""))
+    window = turtle.Screen()
+    window.bgcolor(""white"")
+    draw_fractal(iterations)
+    window.mainloop()
+
+if __name__ == ""__main__"":
+    main()
+```"
